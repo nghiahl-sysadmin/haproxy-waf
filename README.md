@@ -41,7 +41,7 @@ $ sed -i 's/ModSecurity-v3.0.5\/INSTALL\/usr\/local\/modsecurity\/lib/\/usr\/loc
 $ make
 $ sudo make install
 ```
-Tạo file modsec systemd
+- Tạo file modsec systemd
 ```
 cat > /usr/lib/systemd/system/modsecurity.service <<EOF
 [Unit]
