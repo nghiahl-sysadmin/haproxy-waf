@@ -173,7 +173,7 @@ Thử gọi một bad request và check audit log
 $ curl -I https://example.com/?../etc/passwd
 $ cat /var/log/modsecurity/modsec_audit.log
 ```
-
+https://raw.githubusercontent.com/nghiahl-sysadmin/haproxy-waf/main/images/image-1.png
 Có thể dùng jq để xem log dưới dạng json
 ```
 $ cat /var/log/modsecurity/modsec_audit.log | jq
