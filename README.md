@@ -16,20 +16,20 @@ người dùng.
 |ModSecurity   |v3.0.9      |
 ### Cài đặt package dependencies
 Cài đặt một số dependencies phục vụ cho quá trình build các packages:
-```
+```plaintext
 $ sudo apt-get -y install build-essential doxygen valgrind libyajl-dev libgeoip-dev liblmdb-dev liblua5.3-dev libpcre2-dev libxml2-dev libcurl4-openssl-dev libfuzzy-dev libevent-dev libpcre3-dev libssl-dev libsystemd-dev jq
 ```
 ## 3. Cài đặt
 ### Cài đặt ModSecurity
 ```plaintext
-$ sudo mkdir /etc/modsecurity
-$ wget https://github.com/SpiderLabs/ModSecurity/releases/download/v3.0.9/modsecurity-v3.0.9.tar.gz
-$ tar xzvf modsecurity-v3.0.9.tar.gz
-$ cd modsecurity-v3.0.9
-$ ./configure --prefix=/usr/local/modsecurity-3.0.9 --with-lua --with-pcre2 --with-lmdb
-$ make -j $(nproc)
-$ sudo make install
-$ sudo ln -s /usr/local/modsecurity-3.0.9 /usr/local/modsecurity
+\$ sudo mkdir /etc/modsecurity
+\$ wget https://github.com/SpiderLabs/ModSecurity/releases/download/v3.0.9/modsecurity-v3.0.9.tar.gz
+\$ tar xzvf modsecurity-v3.0.9.tar.gz
+\$ cd modsecurity-v3.0.9
+\$ ./configure --prefix=/usr/local/modsecurity-3.0.9 --with-lua --with-pcre2 --with-lmdb
+\$ make -j $(nproc)
+\$ sudo make install
+\$ sudo ln -s /usr/local/modsecurity-3.0.9 /usr/local/modsecurity
 ```
 ## Cài đặt spoa-modsecurity
 ```plaintext
