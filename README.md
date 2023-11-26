@@ -22,16 +22,15 @@ $ sudo apt-get -y install build-essential doxygen valgrind libyajl-dev libgeoip-
 ## 3. Cài đặt
 ### Cài đặt ModSecurity
 ```
-$&#x20;sudo mkdir /etc/modsecurity
-$&#x20;wget https://github.com/SpiderLabs/ModSecurity/releases/download/v3.0.9/modsecurity-v3.0.9.tar.gz
-$&#x20;tar xzvf modsecurity-v3.0.9.tar.gz
-$&#x20;cd modsecurity-v3.0.9
-$&#x20;./configure --prefix=/usr/local/modsecurity-3.0.9 --with-lua --with-pcre2 --with-lmdb
-$&#x20;make -j $(nproc)
-$&#x20;sudo make install
-$&#x20;sudo ln -s /usr/local/modsecurity-3.0.9 /usr/local/modsecurity
+$ sudo mkdir /etc/modsecurity
+$ wget https://github.com/SpiderLabs/ModSecurity/releases/download/v3.0.9/modsecurity-v3.0.9.tar.gz
+$ tar xzvf modsecurity-v3.0.9.tar.gz
+$ cd modsecurity-v3.0.9
+$ ./configure --prefix=/usr/local/modsecurity-3.0.9 --with-lua --with-pcre2 --with-lmdb
+$ make -j $(nproc)
+$ sudo make install
+$ sudo ln -s /usr/local/modsecurity-3.0.9 /usr/local/modsecurity
 ```
-
 ## Cài đặt spoa-modsecurity
 ```
 $ git clone https://github.com/FireBurn/spoa-modsecurity.git
