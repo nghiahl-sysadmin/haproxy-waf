@@ -168,20 +168,22 @@ SecAuditLogFormat JSON
 $ sudo mkdir -p /var/log/modsecurity/
 $ sudo systemctl restart modsecurity
 ```
-Thử gọi một bad request và check audit log
+- Thử gọi một bad request và check audit log
 ```
 $ curl -I https://example.com/?../etc/passwd
 $ cat /var/log/modsecurity/modsec_audit.log
 ```
-![Logo](https://raw.githubusercontent.com/nghiahl-sysadmin/haproxy-waf/main/images/image-1.png)
-Có thể dùng jq để xem log dưới dạng json
+![image-1](https://raw.githubusercontent.com/nghiahl-sysadmin/haproxy-waf/main/images/image-1.png)
+- Có thể dùng jq để xem log dưới dạng json
 ```
 $ cat /var/log/modsecurity/modsec_audit.log | jq
 ```
+![image-1](https://raw.githubusercontent.com/nghiahl-sysadmin/haproxy-waf/main/images/image-2.png)
 - Ở cấu hình default, ModSec chỉ chạy với mode DetectionOnly, là phát hiện các truy cập bất thường và log lại chứ không xử lý.
 - Giờ ta sẽ enable Rule để block mọi truy cập bất thường.
 ```
 $ sudo vim /etc/modsecurity/modsecurity.conf
 SecRuleEngine On
 ```
-Truy cập vào web bằng một URL đáng ngờ và ta sẽ bị chặn lại
+- Truy cập vào web bằng một URL đáng ngờ và ta sẽ bị chặn lại
+![image-3](https://raw.githubusercontent.com/nghiahl-sysadmin/haproxy-waf/main/images/image-3.png)
