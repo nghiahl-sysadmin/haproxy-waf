@@ -8,5 +8,3 @@ scripting, và các cuộc tấn công khác nhằm vào các lỗ hổng bảo 
 độc hại.
 - WAF là một phần quan trọng trong việc bảo vệ ứng dụng web và đảm bảo an toàn cho dữ liệu của
 người dùng.
-| Application | Version |
-|:-----------:|
