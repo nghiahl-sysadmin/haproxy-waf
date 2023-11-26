@@ -15,7 +15,7 @@ người dùng.
 |HAProxy       |v2.7.0      |
 |ModSecurity   |v3.0.9      |
 ### Cài đặt package dependencies
-Cài đặt một số dependencies phục vụ cho quá trình build các packages:
+- Cài đặt một số dependencies phục vụ cho quá trình build các packages:
 ```
 $ sudo apt-get -y install build-essential doxygen valgrind libyajl-dev libgeoip-dev liblmdb-dev liblua5.3-dev libpcre2-dev libxml2-dev libcurl4-openssl-dev libfuzzy-dev libevent-dev libpcre3-dev libssl-dev libsystemd-dev jq
 ```
@@ -72,7 +72,7 @@ $ sudo mv crs-setup.conf.example crs-setup.conf
 $ sudo mv REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf.example REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf
 $ sudo mv RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf.example RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf
 ```
-Thêm các dòng sau vào file /etc/modsecurity/modsecurity.conf
+- Thêm các dòng sau vào file /etc/modsecurity/modsecurity.conf
 ```
 cat >> /etc/modsecurity/modsecurity.conf <<EOF
 include /usr/local/coreruleset/crs-setup.conf
@@ -111,7 +111,7 @@ $ cd haproxy-2.7.0
 $ make -j $(nproc) TARGET=linux-glibc USE_OPENSSL=1 USE_LUA=1 USE_PCRE=1 USE_SYSTEMD=1
 $ sudo make install
 ```
-Tạo file configuration cho modsecurity
+- Tạo file configuration cho modsecurity
 ```
 cat > /etc/haproxy/spoe-modsecurity.conf <<EOF
 [modsecurity]
@@ -128,7 +128,7 @@ cat > /etc/haproxy/spoe-modsecurity.conf <<EOF
         event on-frontend-http-request
 EOF
 ```
-Cập nhật file /etc/haproxy/haproxy.cfg
+- Cập nhật file /etc/haproxy/haproxy.cfg
 ```
 $ vim /etc/haproxy/haproxy.cfg
  
@@ -148,12 +148,12 @@ backend spoe-modsecurity
     timeout server 3m
     server modsec1 127.0.0.1 :12345
 ```
-Validate file HAProxy config
+- Validate file HAProxy config
 ```
 $ haproxy -c -f haproxy.cfg
 Configuration file is valid
 ```
-Đăng ký modsec và haproxy với systemd và chạy
+- Đăng ký modsec và haproxy với systemd và chạy
 ```
 $ sudo systemctl enable --now modsecurity
 ```
