@@ -36,7 +36,7 @@ $ sudo ln -s /usr/local/modsecurity-3.0.9 /usr/local/modsecurity
 $ git clone https://github.com/haproxy/spoa-modsecurity.git
 $ cp -r /usr/local/modsecurity/include/modsecurity spoa-modsecurity/include
 $ cd spoa-modsecurity
-$ sed -i 's/ModSecurity-v3.0.5\/INSTALL\/usr\/local\/modsecurity\/include/\/usr\/local\/modsecurity\/include\/modsecurity/g' Makefile
+$ sed -i 's/modsecurity-2.9.1\/INSTALL\/include/\/usr\/local\/modsecurity\/include\/modsecurity/g' Makefile
 $ sed -i 's/ModSecurity-v3.0.5\/INSTALL\/usr\/local\/modsecurity\/lib/\/usr\/local\/modsecurity\/lib/g' Makefile
 $ make
 $ sudo make install
