@@ -33,7 +33,7 @@ $ sudo ln -s /usr/local/modsecurity-3.0.9 /usr/local/modsecurity
 ```
 ## Cài đặt spoa-modsecurity
 ```
-$ git clone https://github.com/FireBurn/spoa-modsecurity.git
+$ git clone https://github.com/haproxy/spoa-modsecurity.git
 $ cp -r /usr/local/modsecurity/include/modsecurity spoa-modsecurity/include
 $ cd spoa-modsecurity
 $ sed -i 's/ModSecurity-v3.0.5\/INSTALL\/usr\/local\/modsecurity\/include/\/usr\/local\/modsecurity\/include\/modsecurity/g' Makefile
