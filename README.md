@@ -113,6 +113,7 @@ tar xzvf haproxy-v2.7.0.tar.gz
 cd haproxy-2.7.0
 make -j $(nproc) TARGET=linux-glibc USE_OPENSSL=1 USE_LUA=1 USE_PCRE=1 USE_SYSTEMD=1
 sudo make install
+mkdir -p /etc/haproxy
 ```
 - Tạo file configuration cho modsecurity
 ```
