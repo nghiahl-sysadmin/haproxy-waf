@@ -17,7 +17,7 @@ người dùng.
 ### Cài đặt package dependencies
 - Cài đặt một số dependencies phục vụ cho quá trình build các packages:
 ```
-$ sudo apt-get -y install build-essential doxygen valgrind libyajl-dev libgeoip-dev liblmdb-dev liblua5.3-dev libpcre2-dev libxml2-dev libcurl4-openssl-dev libfuzzy-dev libevent-dev libpcre3-dev libssl-dev libsystemd-dev jq
+sudo apt-get -y install build-essential doxygen valgrind libyajl-dev libgeoip-dev liblmdb-dev liblua5.3-dev libpcre2-dev libxml2-dev libcurl4-openssl-dev libfuzzy-dev libevent-dev libpcre3-dev libssl-dev libsystemd-dev jq
 ```
 ## 3. Cài đặt
 ### Cài đặt ModSecurity
