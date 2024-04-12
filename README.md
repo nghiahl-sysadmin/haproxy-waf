@@ -22,24 +22,26 @@ $ sudo apt-get -y install build-essential doxygen valgrind libyajl-dev libgeoip-
 ## 3. Cài đặt
 ### Cài đặt ModSecurity
 ```
-$ sudo mkdir /etc/modsecurity
-$ wget https://github.com/SpiderLabs/ModSecurity/releases/download/v3.0.9/modsecurity-v3.0.9.tar.gz
-$ tar xzvf modsecurity-v3.0.9.tar.gz
-$ cd modsecurity-v3.0.9
-$ ./configure --prefix=/usr/local/modsecurity-3.0.9 --with-lua --with-pcre2 --with-lmdb
-$ make -j $(nproc)
-$ sudo make install
-$ sudo ln -s /usr/local/modsecurity-3.0.9 /usr/local/modsecurity
+sudo mkdir /etc/modsecurity
+wget https://github.com/SpiderLabs/ModSecurity/releases/download/v3.0.12/modsecurity-v3.0.12.tar.gz
+tar xzvf modsecurity-v3.0.12.tar.gz
+cd modsecurity-v3.0.12
+./configure --prefix=/usr/local/modsecurity-3.0.12 --with-lua --with-pcre2 --with-lmdb
+make -j $(nproc)
+sudo make install
+sudo ln -s /usr/local/modsecurity-3.0.12 /usr/local/modsecurity
+sudo cp modsecurity.conf-recommended /etc/modsecurity/modsecurity.conf
+sudo cp unicode.mapping /etc/modsecurity
 ```
 ## Cài đặt spoa-modsecurity
 ```
-$ git clone https://github.com/haproxy/spoa-modsecurity.git
-$ cp -r /usr/local/modsecurity/include/modsecurity spoa-modsecurity/include
-$ cd spoa-modsecurity
-$ sed -i 's/modsecurity-2.9.1\/INSTALL\/include/\/usr\/local\/modsecurity\/include\/modsecurity/g' Makefile
-$ sed -i 's/modsecurity-2.9.1\/INSTALL\/lib/\/usr\/local\/modsecurity\/lib/g' Makefile
-$ make
-$ sudo make install
+git clone https://github.com/haproxy/spoa-modsecurity.git
+cp -r /usr/local/modsecurity/include/modsecurity spoa-modsecurity/include
+cd spoa-modsecurity
+sed -i 's/modsecurity-2.9.1\/INSTALL\/include/\/usr\/local\/modsecurity\/include\/modsecurity/g' Makefile
+sed -i 's/modsecurity-2.9.1\/INSTALL\/lib/\/usr\/local\/modsecurity\/lib/g' Makefile
+make
+sudo make install
 ```
 - Tạo file modsec systemd
 ```
@@ -63,14 +65,14 @@ EOF
 ```
 ## Cài đặt OWASP ModSecurity CRS
 ```
-$ wget https://github.com/coreruleset/coreruleset/archive/refs/tags/v3.3.4.tar.gz -O coreruleset-v3.3.4.tar.gz
-$ tar xzvf coreruleset-v3.3.4.tar.gz
-$ sudo mv coreruleset-3.3.4 /usr/local/coreruleset-3.3.4
-$ sudo ln -sf /usr/local/coreruleset-3.3.4 /usr/local/coreruleset
-$ cd /usr/local/coreruleset
-$ sudo mv crs-setup.conf.example crs-setup.conf
-$ sudo mv REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf.example REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf
-$ sudo mv RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf.example RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf
+wget https://github.com/coreruleset/coreruleset/archive/refs/tags/v3.3.4.tar.gz -O coreruleset-v3.3.4.tar.gz
+tar xzvf coreruleset-v3.3.4.tar.gz
+sudo mv coreruleset-3.3.4 /usr/local/coreruleset-3.3.4
+sudo ln -sf /usr/local/coreruleset-3.3.4 /usr/local/coreruleset
+cd /usr/local/coreruleset
+sudo mv crs-setup.conf.example crs-setup.conf
+sudo mv REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf.example REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf
+sudo mv RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf.example RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf
 ```
 - Thêm các dòng sau vào file /etc/modsecurity/modsecurity.conf
 ```
@@ -105,11 +107,11 @@ EOF
 ```
 ## Cài đặt HAProxy
 ```
-$ wget https://github.com/haproxy/haproxy/archive/refs/tags/v2.7.0.tar.gz -O haproxy-v2.7.0.tar.gz
-$ tar xzvf haproxy-v2.7.0.tar.gz
-$ cd haproxy-2.7.0
-$ make -j $(nproc) TARGET=linux-glibc USE_OPENSSL=1 USE_LUA=1 USE_PCRE=1 USE_SYSTEMD=1
-$ sudo make install
+wget https://github.com/haproxy/haproxy/archive/refs/tags/v2.7.0.tar.gz -O haproxy-v2.7.0.tar.gz
+tar xzvf haproxy-v2.7.0.tar.gz
+cd haproxy-2.7.0
+make -j $(nproc) TARGET=linux-glibc USE_OPENSSL=1 USE_LUA=1 USE_PCRE=1 USE_SYSTEMD=1
+sudo make install
 ```
 - Tạo file configuration cho modsecurity
 ```
@@ -150,12 +152,12 @@ backend spoe-modsecurity
 ```
 - Validate file HAProxy config
 ```
-$ haproxy -c -f haproxy.cfg
+haproxy -c -f haproxy.cfg
 Configuration file is valid
 ```
 - Đăng ký modsec và haproxy với systemd và chạy
 ```
-$ sudo systemctl enable --now modsecurity
+sudo systemctl enable --now modsecurity
 ```
 ## Check WAF Operation
 - Log ModSec sẽ được lưu trong file audit log. Ta có thể đọc file audit log để kiểm tra xem CRS đã hoạt động chính xác chưa. Đường dẫn audit log có thể được thay đổi trong file modsecurity.conf
@@ -170,13 +172,13 @@ $ sudo systemctl restart modsecurity
 ```
 - Thử gọi một bad request và check audit log
 ```
-$ curl -I https://example.com/?../etc/passwd
-$ cat /var/log/modsecurity/modsec_audit.log
+curl -I https://example.com/?../etc/passwd
+cat /var/log/modsecurity/modsec_audit.log
 ```
 ![image-1](https://raw.githubusercontent.com/nghiahl-sysadmin/haproxy-waf/main/images/image-1.png)
 - Có thể dùng jq để xem log dưới dạng json
 ```
-$ cat /var/log/modsecurity/modsec_audit.log | jq
+cat /var/log/modsecurity/modsec_audit.log | jq
 ```
 ![image-1](https://raw.githubusercontent.com/nghiahl-sysadmin/haproxy-waf/main/images/image-2.png)
 - Ở cấu hình default, ModSec chỉ chạy với mode DetectionOnly, là phát hiện các truy cập bất thường và log lại chứ không xử lý.
