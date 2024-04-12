@@ -68,11 +68,12 @@ EOF
 wget https://github.com/coreruleset/coreruleset/archive/refs/tags/v3.3.4.tar.gz -O coreruleset-v3.3.4.tar.gz
 tar xzvf coreruleset-v3.3.4.tar.gz
 sudo mv coreruleset-3.3.4 /usr/local/coreruleset-3.3.4
-sudo ln -sf /usr/local/coreruleset-3.3.4 /usr/local/coreruleset
-cd /usr/local/coreruleset
+cd /usr/local/coreruleset-3.3.4
 sudo mv crs-setup.conf.example crs-setup.conf
+cd /usr/local/coreruleset-3.3.4/rules
 sudo mv REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf.example REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf
 sudo mv RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf.example RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf
+sudo ln -sf /usr/local/coreruleset-3.3.4 /usr/local/coreruleset
 ```
 - Thêm các dòng sau vào file /etc/modsecurity/modsecurity.conf
 ```
